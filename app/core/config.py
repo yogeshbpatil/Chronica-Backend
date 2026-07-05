@@ -18,6 +18,7 @@ class Settings(BaseSettings):
     # DATABASE_URL: str = "postgresql://user:password@localhost:5432/Chronica_Database"
     # DATABASE_URL: str = "postgresql+psycopg://postgres:Yogesh@123@localhost:5432/chronica_database"
     DATABASE_URL: str = "postgresql+psycopg://postgres:Yogesh%40123@localhost:5432/chronica_database"
+    # DATABASE_URL: str = "postgresql+psycopg://postgres:Yogesh@123@localhost:5432/chronica_database"
 
     # JWT & Security
     SECRET_KEY: str = "your-secret-key-here-change-in-production"
