@@ -10,8 +10,6 @@ from fastapi.exceptions import RequestValidationError
 
 from app.core.config import get_settings
 from app.api import api_v1_router
-from app.db import engine
-from app.models import Base
 
 settings = get_settings()
 
@@ -32,9 +30,6 @@ def create_app() -> FastAPI:
         redoc_url="/api/redoc",
         openapi_url="/api/openapi.json",
     )
-
-    # Create database tables
-    Base.metadata.create_all(bind=engine)
 
     # Add CORS middleware
     app.add_middleware(

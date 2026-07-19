@@ -15,13 +15,14 @@ class Settings(BaseSettings):
     """
 
     # Database
-    # DATABASE_URL: str = "postgresql://user:password@localhost:5432/Chronica_Database"
-    # DATABASE_URL: str = "postgresql+psycopg://postgres:Yogesh@123@localhost:5432/chronica_database"
-    DATABASE_URL: str = "postgresql+psycopg://postgres:Yogesh%40123@localhost:5432/chronica_database"
-    # DATABASE_URL: str = "postgresql+psycopg://postgres:Yogesh@123@localhost:5432/chronica_database"
+    # Render overrides this with the pooled Neon connection string.  The @ in
+    # Admin@123 must be URL-encoded as %40 when it appears inside a URL.
+    DATABASE_URL: str = "postgresql+psycopg://postgres:Admin%40123@localhost:5432/chronica_database"
 
     # JWT & Security
-    SECRET_KEY: str = "your-secret-key-here-change-in-production"
+    # Render supplies a generated value. Never use this development fallback
+    # for a public deployment.
+    SECRET_KEY: str = "development-only-secret-key"
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 10080  # 7 days
 

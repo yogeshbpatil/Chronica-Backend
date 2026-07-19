@@ -17,6 +17,8 @@ engine = create_engine(
     settings.DATABASE_URL,
     echo=settings.DEBUG,  # Log all SQL statements if DEBUG is True
     future=True,
+    pool_pre_ping=True,  # Replace stale connections after Neon has suspended compute
+    pool_recycle=300,
 )
 
 # Create session factory

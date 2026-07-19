@@ -55,7 +55,13 @@ class ChessGame(Base):
     user_id = Column(String(36), ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
     title = Column(String(120), nullable=False, index=True)
     opponent = Column(String(100), nullable=False)
-    result = Column(SQLEnum(GameResult), nullable=False, index=True)
+    # Persist enum values ("win", "loss", "draw") to match the Alembic
+    # migration instead of Python member names ("WIN", "LOSS", "DRAW").
+    result = Column(
+        SQLEnum(GameResult, values_callable=lambda enum_class: [item.value for item in enum_class]),
+        nullable=False,
+        index=True,
+    )
     opening = Column(String(120), nullable=True, default="")
     notes = Column(Text, nullable=True, default="")
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False, index=True)
